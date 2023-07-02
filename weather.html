@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/375d969cd5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/weather.js"></script>
+    <title>Project 3 - OpenWeatherMap</title>
+</head>
+
+<body>
+    <main>
+        <div class="left">
+            <h1>CTEC 126 OpenWeatherMap API</h1>
+            <h2>Project 3</h2>
+            <div class="input">
+                <input aria-label="Please enter zipcode" type="text" id="zip" placeholder="Enter ZIP Code">
+                <button id="getWeather" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <!-- Dedicated error box -->
+            <div id="error"></div>
+            <!-- Show today's weather -->
+            <div id="weather"></div>
+        </div>
+        <div class="right">
+            <!-- Show the weather forecast -->
+            <div id="daysRow"></div>
+        </div>
+    </main>
+</body>
+
+</html>

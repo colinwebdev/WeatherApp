@@ -1,0 +1,529 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left {
+  padding: 1rem;
+  max-height: 100vh;
+  position: fixed;
+  width: 45%;
+}
+
+.right {
+  max-width: 50%;
+  margin-left: calc(50% + 1rem);
+  height: 100vh;
+}
+
+body {
+  font-family: Arial;
+  background: #2A2E52;
+  background-image: linear-gradient(#302d72, transparent 20%), linear-gradient(135deg, #302d72, transparent 45%), linear-gradient(225deg, #302d72, transparent 45%);
+  background-attachment: fixed;
+}
+
+h1, h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+h2 {
+  border-top: 3px solid white;
+  border-image: linear-gradient(90deg, transparent, #5C3FA8, transparent) 1;
+  margin: 0.5rem 0 2rem 0;
+  padding-top: 0.5rem;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+input[type=text] {
+  padding: 10px;
+  height: 2.5rem;
+  border: solid 1px #00c5f6;
+  border-radius: 1000px 0 0 1000px;
+  background-color: transparent;
+  border-right: 0;
+  outline: none;
+  color: white;
+  transition: all 0.5s;
+}
+
+input::placeholder {
+  color: #00c5f6;
+  opacity: 0.35;
+}
+
+input[type=text]:hover,
+button:hover {
+  background-color: #1F194B;
+  border-color: #E0469E;
+}
+
+input[type=text]:focus {
+  background-color: #1F194B;
+}
+
+.input:hover input, .input:hover button {
+  background-color: #1F194B;
+  border-color: #E0469E;
+}
+
+button {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  padding: 0.5rem 1rem;
+  border: solid 1px #00c5f6;
+  border-left: 0;
+  border-radius: 0 1000px 1000px 0;
+  height: 2.5rem;
+  transition: all 0.5s;
+}
+button:hover {
+  background-color: #1F194B;
+}
+
+button:hover {
+  color: #E0469E;
+}
+
+#weather {
+  margin: 150px 3rem 0 3rem;
+  padding: 20px;
+  background: rgba(31, 25, 75, 0.5);
+  background-image: linear-gradient(0deg, transparent 50%, #5C3FA8);
+  display: none;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+  position: relative;
+  border: 2px solid rgba(92, 63, 168, 0.5);
+  box-shadow: 0 0 30px rgba(92, 63, 168, 0.3);
+}
+#weather img {
+  position: absolute;
+  width: 250px;
+  height: auto;
+  top: -125px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#weather .todayRow {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin: -1rem 1rem 1rem 1rem;
+  margin-bottom: auto;
+  padding: 0 1.5rem;
+}
+#weather .todayLeft, #weather .todayRight, #weather .todayCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+}
+#weather .todayCenter {
+  width: 50%;
+}
+#weather .todayCenter .temp {
+  font-size: 7rem;
+}
+#weather .todayCenter .temp span {
+  display: inline-block;
+  font-size: 2rem;
+  transform: translateY(-1rem);
+}
+#weather .todayCenter .feels {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+}
+#weather .todayCenter .feels span {
+  display: inline-block;
+  font-size: 2rem;
+}
+#weather .todayCenter .feels span span {
+  display: inline-block;
+  font-size: 1rem;
+  transform: translateY(-0.5rem);
+}
+#weather .sideSub {
+  display: flex;
+  flex-direction: column;
+}
+#weather .sideSub span:nth-of-type(2) {
+  font-size: 1.5rem;
+}
+#weather .sideTemp {
+  display: flex;
+  flex-direction: column;
+}
+#weather .sideTemp span:nth-of-type(2) {
+  font-size: 2rem;
+  border-bottom: 2px solid white;
+  border-image: linear-gradient(90deg, transparent, #5C3FA8, transparent) 1;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#weather .desc {
+  margin-top: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #00c5f6;
+  background-color: rgba(31, 25, 75, 0.5);
+  border-radius: 1000px;
+  padding: 2rem;
+  margin-top: -1rem;
+}
+
+.date {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 3px solid white;
+  border-image: linear-gradient(90deg, transparent, #5C3FA8, transparent) 1;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.time {
+  font-size: 1.5rem;
+}
+
+#daysRow {
+  display: none;
+  flex-direction: column;
+  margin: 1rem;
+  transition: all 0.5s ease-in-out;
+  min-height: calc(100vh - 2rem);
+  border: 1px solid #5C3FA8;
+  box-shadow: 0 0 30px rgba(92, 63, 168, 0.3);
+  border-radius: 20px;
+}
+#daysRow .dayBox {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: rgba(31, 25, 75, 0.5);
+  border-bottom: 3px solid #E0469E;
+  border-image: linear-gradient(90deg, #302d72 20%, transparent) 1;
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox .summaryTop, #daysRow .dayBox .summaryBottom {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox .summaryTop {
+  position: relative;
+}
+#daysRow .dayBox .summaryTop h2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-transform: uppercase;
+  border: 0;
+  background-color: #5C3FA8;
+  height: fit-content;
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 0 0 50px 50px;
+  margin: -1rem 0 0.5rem 0.5rem;
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox .summaryTop h2 .day {
+  font-size: 175%;
+  color: #00c5f6;
+  font-weight: normal;
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox .summaryTop h3 {
+  color: white;
+  padding: 1rem 2rem;
+  margin-top: -1rem;
+  height: fit-content;
+  width: 50%;
+  background-image: linear-gradient(90deg, #5C3FA8, transparent);
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox .summaryTop img {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: -25px;
+  right: -75px;
+  transition: all 0.75s ease-in-out;
+}
+#daysRow .dayBox .summaryBottom {
+  color: white;
+  font-size: 3rem;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: -4rem;
+  opacity: 1;
+  transition: all 0.5s ease-in-out 0.25s;
+}
+#daysRow .dayBox .summaryBottom div {
+  text-align: center;
+}
+#daysRow .dayBox .summaryBottom div p {
+  font-size: 1.5rem;
+  transition: all 0.5s ease-in-out 0.25s;
+}
+#daysRow .dayBox .low span, #daysRow .dayBox .high span {
+  font-size: 75%;
+  display: inline-block;
+  transform: translateY(-20%);
+}
+#daysRow .dayBox:first-of-type {
+  border-radius: 20px 20px 0 0;
+}
+#daysRow .dayBox.last {
+  border: 0;
+  border-radius: 0 0 20px 20px;
+}
+#daysRow .dayBox.last.active {
+  border-radius: 0;
+  transition: all 0.5s ease-in-out;
+}
+#daysRow .dayBox:hover {
+  background-color: #00c5f6;
+}
+#daysRow .dayBox.active {
+  border: 0;
+  background-color: #1F194B;
+}
+#daysRow .dayBox.squish {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding-bottom: 0;
+}
+#daysRow .dayBox.squish .summaryTop h2 {
+  padding: 0.5rem 1rem;
+  min-height: 100%;
+  border-radius: 0;
+  margin: -1rem 0 0 0.5rem;
+  font-size: 1rem;
+}
+#daysRow .dayBox.squish .summaryTop h2 .day {
+  font-size: 1.5rem;
+}
+#daysRow .dayBox.squish .summaryTop img {
+  width: 100px;
+  height: auto;
+  top: -30px;
+  right: -50px;
+}
+#daysRow .dayBox.squish .summaryBottom {
+  margin-top: -3.6rem;
+  font-size: 1.15rem;
+  z-index: 5;
+}
+#daysRow .dayBox.squish .summaryBottom p {
+  font-size: 1.15rem;
+}
+#daysRow .dayDataBox {
+  background-color: #1F194B;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all 0.5s ease-in-out 0.25s;
+}
+#daysRow .dayDataBox:last-of-type {
+  border-radius: 0 0 20px 20px;
+}
+#daysRow .dayDataBox img {
+  width: 65px;
+  height: auto;
+}
+#daysRow .dayDataBox div {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  border-bottom: 2px solid #2A2E52;
+  border-image: linear-gradient(90deg, transparent, #5C3FA8, transparent) 1;
+  color: white;
+}
+#daysRow .dayDataBox div:last-of-type {
+  border: 0;
+}
+#daysRow .dayDataBox div p {
+  width: 14%;
+  text-align: center;
+}
+#daysRow .dayDataBox div .amPm {
+  padding-left: 0.25rem;
+  font-size: 75%;
+}
+#daysRow .closed {
+  height: 0px;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+#error {
+  margin-top: 150px;
+  text-align: center;
+  font-size: 2rem;
+  color: #00c5f6;
+  background-color: rgba(31, 25, 75, 0.5);
+  border-radius: 1000px;
+  padding: 2rem;
+  display: none;
+}
+
+[data-count="1"] {
+  height: 75px;
+}
+
+[data-count="2"] {
+  height: 150px;
+}
+
+[data-count="3"] {
+  height: 225px;
+}
+
+[data-count="4"] {
+  height: 300px;
+}
+
+[data-count="5"] {
+  height: 375px;
+}
+
+[data-count="6"] {
+  height: 450px;
+}
+
+[data-count="7"] {
+  height: 525px;
+}
+
+[data-count="8"] {
+  height: 600px;
+}
+
+@media (min-width: 1400px) {
+  .left {
+    max-width: 700px;
+    transform: translateX(-3rem);
+  }
+  .title {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #weather .todayRow {
+    margin-top: 1rem;
+  }
+}
+@media (min-height: 933px) and (min-width: 1050px) {
+  body {
+    overflow: hidden;
+  }
+}
+@media (max-height: 932px) {
+  #daysRow {
+    min-height: 900px;
+  }
+}
+@media (max-width: 1350px) and (min-width: 1050px) {
+  body {
+    overflow-x: hidden;
+  }
+  .left {
+    width: 45%;
+  }
+  #weather {
+    margin: 150px 1rem 0 1rem;
+  }
+  .right {
+    margin-left: calc(45% + 1rem);
+  }
+}
+@media (max-width: 1215px) {
+  #weather .todayCenter .temp {
+    font-size: 5rem;
+  }
+}
+@media (max-width: 1120px) and (min-width: 1050px) {
+  #weather .todayRow {
+    gap: 0.5rem;
+  }
+  #weather .sideTemp span:nth-of-type(2) {
+    font-size: 1.5rem;
+  }
+  #weather .sideSub span:nth-of-type(2) {
+    font-size: 1rem;
+  }
+  #weather .todayCenter .feels {
+    font-size: 1rem;
+  }
+  #weather .todayCenter .feels span {
+    font-size: 1rem;
+  }
+  #weather .todayCenter .feels span span {
+    transform: none;
+  }
+  #daysRow .dayBox .summaryTop img {
+    width: 200px;
+    height: auto;
+    top: -75px;
+    right: -75px;
+  }
+}
+@media (max-width: 1050px) {
+  main {
+    flex-direction: column;
+  }
+  .left {
+    position: relative;
+    width: auto;
+    min-width: 50%;
+    max-width: 90%;
+    margin: 1rem auto;
+    margin-top: 150px;
+  }
+  .right {
+    height: auto;
+    min-width: 80%;
+    max-width: 90%;
+    margin: 0 auto;
+    flex-grow: 1;
+  }
+}
+@media (max-width: 650px) {
+  #weather {
+    border-radius: 100px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
