@@ -6,6 +6,10 @@ This project was created for an assignment in CTEC 126 JavaScript at Clark Colle
 
 I gave myself an additional goal to make the animations on the page as smooth as possible. I achieved this through a combination of timing adjustments in CSS on the transitions, as well as the use of timers in JavaScript. I also wanted to use relatively large icons for the weather indicator, but those provided by Open Weather are quite small, so I created custom artwork to match the design I created.
 
+## Add Your Own API Key
+
+For the page to function, you will need your own API key. Sign up at https://openweathermap.org/ then go to https://home.openweathermap.org/api_keys to get your key and add it to the weather.js file in place of "YOURKEYHERE".
+
 ## Assignment Requirements
 
 - Review the weather.js code that has been provided. The code for the getCurrentWeather() function is complete and works. However, you must make the forecast appear differently than what has been provided.

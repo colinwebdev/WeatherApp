@@ -1,6 +1,6 @@
 // weather.js
 // Created by: Bruce Elgort / Spring 2023
-// Student: Colin Moore
+// Student: Colin Machajewski
 
 // Function to get Latitude and Longitude from the OpenWeather API
 
@@ -8,7 +8,7 @@
 const weatherContent = document.querySelector('#weather')
 const errorBox = document.querySelector('#error')
 const daysRow = document.querySelector('#daysRow')
-const API_KEY = '212ec332aaf6bb472c94bec30f51af22' 
+const API_KEY = 'YOURKEYHERE' 
 
 const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
